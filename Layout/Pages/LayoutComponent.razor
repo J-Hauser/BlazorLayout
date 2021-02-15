@@ -1,0 +1,26 @@
+﻿@typeparam T
+<h3>Layout for @typeof(T).Name</h3>
+<CascadingValue Value="this">
+    <EditForm EditContext="EditContext">
+        @ChildContent
+    </EditForm>
+</CascadingValue>
+@code {
+    public LayoutComponent()
+    {
+        //Model = new T();
+        //EditContext = new EditContext(Model);
+    }
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    public T Model { get; set; }
+    public EditContext EditContext { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Model = new T();
+        EditContext = new EditContext(Model);
+        base.OnInitialized();
+    }
+}
